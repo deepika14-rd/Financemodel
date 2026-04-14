@@ -1,3 +1,4 @@
+'use client'
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Card from '@mui/material/Card';
@@ -9,8 +10,8 @@ import ListItemText from '@mui/material/ListItemText';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import type { SxProps } from '@mui/material/styles';
-import { ArrowUpIcon } from '@phosphor-icons/react/dist/ssr/ArrowUp';
-import { CurrencyDollarIcon } from '@phosphor-icons/react/dist/ssr/CurrencyDollar';
+import { ArrowUpIcon } from '@phosphor-icons/react/ArrowUp';
+import { CurrencyDollarIcon } from '@phosphor-icons/react/CurrencyDollar';
 
 interface InsightsProps {
   highestCategory: string;

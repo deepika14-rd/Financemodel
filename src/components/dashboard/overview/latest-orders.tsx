@@ -1,4 +1,5 @@
-import * as React from 'react';
+'use client'
+;import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
@@ -12,7 +13,7 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import { ArrowRightIcon } from '@phosphor-icons/react/dist/ssr/ArrowRight';
+import { ArrowRightIcon } from '@phosphor-icons/react/ArrowRight';
 import dayjs from 'dayjs';
 
 const statusMap = {

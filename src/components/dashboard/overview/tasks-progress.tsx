@@ -1,3 +1,4 @@
+'use client'
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Card from '@mui/material/Card';
@@ -6,7 +7,7 @@ import LinearProgress from '@mui/material/LinearProgress';
 import Stack from '@mui/material/Stack';
 import type { SxProps } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
-import { ListBulletsIcon } from '@phosphor-icons/react/dist/ssr/ListBullets';
+import { ListBulletsIcon } from '@phosphor-icons/react/ListBullets';
 
 export interface TasksProgressProps {
   sx?: SxProps;

@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -11,8 +12,8 @@ import ListItem from '@mui/material/ListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemText from '@mui/material/ListItemText';
 import type { SxProps } from '@mui/material/styles';
-import { ArrowRightIcon } from '@phosphor-icons/react/dist/ssr/ArrowRight';
-import { DotsThreeVerticalIcon } from '@phosphor-icons/react/dist/ssr/DotsThreeVertical';
+import { ArrowRightIcon } from '@phosphor-icons/react/ArrowRight';
+import { DotsThreeVerticalIcon } from '@phosphor-icons/react/DotsThreeVertical';
 import dayjs from 'dayjs';
 
 export interface Product {

@@ -24,6 +24,30 @@ const user = {
   role: 'admin', // ✅ REQUIRED FIELD
 } satisfies User;
 
+export const authClient = {
+  getUser,
+  signIn: signInWithPassword,
+  signUp,
+  signOut,
+  resetPassword,
+};
+
+export async function resetPassword({ email }: { email: string }): Promise<{ error?: string }> {
+  // Mock implementation
+  if (!email.includes('@')) {
+    return { error: 'Invalid email' };
+  }
+  return {};
+}
+
+export async function signInWithPassword({ email, password }: SignInParams): Promise<{ error?: string }> {
+  // Mock implementation - use demo credentials
+  if (email !== 'deepika@devias.io' || password !== 'Secret1') {
+    return { error: 'Invalid credentials' };
+  }
+  return {};
+}
+
 export async function signUp(_: SignUpParams): Promise<{ error?: string }> {
   return {};
 }

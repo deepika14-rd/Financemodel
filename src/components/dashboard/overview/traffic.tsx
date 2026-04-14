@@ -8,10 +8,10 @@ import Stack from '@mui/material/Stack';
 import { useTheme } from '@mui/material/styles';
 import type { SxProps } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
-import type { Icon } from '@phosphor-icons/react/dist/lib/types';
-import { DesktopIcon } from '@phosphor-icons/react/dist/ssr/Desktop';
-import { DeviceTabletIcon } from '@phosphor-icons/react/dist/ssr/DeviceTablet';
-import { PhoneIcon } from '@phosphor-icons/react/dist/ssr/Phone';
+import type { Icon } from '@phosphor-icons/react';
+import { DesktopIcon } from '@phosphor-icons/react/Desktop';
+import { DeviceTabletIcon } from '@phosphor-icons/react/DeviceTablet';
+import { PhoneIcon } from '@phosphor-icons/react/Phone';
 import type { ApexOptions } from 'apexcharts';
 
 import { Chart } from '@/components/core/chart';

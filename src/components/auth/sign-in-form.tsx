@@ -13,8 +13,8 @@ import Link from '@mui/material/Link';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import { EyeIcon } from '@phosphor-icons/react/dist/ssr/Eye';
-import { EyeSlashIcon } from '@phosphor-icons/react/dist/ssr/EyeSlash';
+import { EyeIcon } from '@phosphor-icons/react/Eye';
+import { EyeSlashIcon } from '@phosphor-icons/react/EyeSlash';
 import { Controller, useForm } from 'react-hook-form';
 import { z as zod } from 'zod';
 
@@ -51,7 +51,7 @@ export function SignInForm(): React.JSX.Element {
     async (values: Values): Promise<void> => {
       setIsPending(true);
 
-      const { error } = await authClient.signInWithPassword(values);
+      const { error } = await authClient.signIn(values);
 
       if (error) {
         setError('root', { type: 'server', message: error });
@@ -62,9 +62,8 @@ export function SignInForm(): React.JSX.Element {
       // Refresh the auth state
       await checkSession?.();
 
-      // UserProvider, for this case, will not refresh the router
-      // After refresh, GuestGuard will handle the redirect
-      router.refresh();
+// Explicit redirect to dashboard after successful login
+      router.push(paths.dashboard.overview);
     },
     [checkSession, router, setError]
   );

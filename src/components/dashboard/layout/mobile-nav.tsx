@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import RouterLink from 'next/link';
+import NextLink from 'next/link';
 import { usePathname } from 'next/navigation';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -9,8 +9,8 @@ import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import { ArrowSquareUpRightIcon } from '@phosphor-icons/react/dist/ssr/ArrowSquareUpRight';
-import { CaretUpDownIcon } from '@phosphor-icons/react/dist/ssr/CaretUpDown';
+import { ArrowSquareUpRightIcon } from '@phosphor-icons/react/ArrowSquareUpRight';
+import { CaretUpDownIcon } from '@phosphor-icons/react/CaretUpDown';
 
 import type { NavItemConfig } from '@/types/nav';
 import { paths } from '@/paths';
@@ -20,63 +20,76 @@ import { Logo } from '@/components/core/logo';
 import { navItems } from './config';
 import { navIcons } from './nav-icons';
 
-export interface MobileNavProps {
+interface MobileNavProps {
   onClose?: () => void;
   open?: boolean;
-  items?: NavItemConfig[];
 }
 
-export function MobileNav({ open, onClose }: MobileNavProps): React.JSX.Element {
+function MobileNav({ onClose, open }: MobileNavProps): React.JSX.Element {
   const pathname = usePathname();
 
   return (
     <Drawer
+      onClose={onClose}
+      open={open}
       PaperProps={{
         sx: {
-          '--MobileNav-background': 'var(--mui-palette-neutral-950)',
-          '--MobileNav-color': 'var(--mui-palette-common-white)',
-          '--NavItem-color': 'var(--mui-palette-neutral-300)',
-          '--NavItem-hover-background': 'rgba(255, 255, 255, 0.04)',
-          '--NavItem-active-background': 'var(--mui-palette-primary-main)',
-          '--NavItem-active-color': 'var(--mui-palette-primary-contrastText)',
-          '--NavItem-disabled-color': 'var(--mui-palette-neutral-500)',
-          '--NavItem-icon-color': 'var(--mui-palette-neutral-400)',
-          '--NavItem-icon-active-color': 'var(--mui-palette-primary-contrastText)',
-          '--NavItem-icon-disabled-color': 'var(--mui-palette-neutral-600)',
-          bgcolor: 'var(--MobileNav-background)',
-          color: 'var(--MobileNav-color)',
+          backgroundColor: 'var(--mui-palette-neutral-950)',
+          color: 'var(--mui-palette-common-white)',
           display: 'flex',
           flexDirection: 'column',
           maxWidth: '100%',
+          width: 280,
           scrollbarWidth: 'none',
-          width: 'var(--MobileNav-width)',
-          zIndex: 'var(--MobileNav-zIndex)',
-          '&::-webkit-scrollbar': { display: 'none' },
+          '&::-webkit-scrollbar': {
+            display: 'none',
+          },
         },
       }}
-      onClose={onClose}
-      open={open}
     >
-      <Stack spacing={2} sx={{ p: 3 }}>
-        <Box component={RouterLink} href={paths.home} sx={{ display: 'inline-flex' }}>
-          <Logo color="light" height={32} width={122} />
+      {/* Header */}
+      <Stack
+        spacing={2}
+        sx={{
+          p: 3,
+        }}
+      >
+        <Box
+          component={NextLink}
+          href={paths.dashboard.overview}
+          sx={{
+            display: 'inline-flex',
+          }}
+        >
+          <Logo
+            color="light"
+            height={32}
+            width={122}
+          />
         </Box>
         <Box
           sx={{
             alignItems: 'center',
-            backgroundColor: 'var(--mui-palette-neutral-950)',
+            backgroundColor: 'var(--mui-palette-neutral-900)',
             border: '1px solid var(--mui-palette-neutral-700)',
-            borderRadius: '12px',
+            borderRadius: 1,
             cursor: 'pointer',
             display: 'flex',
-            p: '4px 12px',
+            p: 1.5,
           }}
+          onClick={() => {}}
         >
-          <Box sx={{ flex: '1 1 auto' }}>
-            <Typography color="var(--mui-palette-neutral-400)" variant="body2">
+          <Box sx={{ flex: 1 }}>
+            <Typography
+              color="var(--mui-palette-neutral-400)"
+              variant="caption"
+            >
               Model
             </Typography>
-            <Typography color="inherit" variant="subtitle1">
+            <Typography
+              color="inherit"
+              variant="subtitle2"
+            >
               Finance
             </Typography>
           </Box>
@@ -84,116 +97,138 @@ export function MobileNav({ open, onClose }: MobileNavProps): React.JSX.Element 
         </Box>
       </Stack>
       <Divider sx={{ borderColor: 'var(--mui-palette-neutral-700)' }} />
-      <Box component="nav" sx={{ flex: '1 1 auto', p: '12px' }}>
-        {renderNavItems({ pathname, items: navItems })}
+
+      {/* Nav */}
+      <Box
+        component="nav"
+        sx={{
+          flex: '1 1 auto',
+          p: 2,
+        }}
+      >
+        {renderNavItems({
+          pathname,
+          items: navItems,
+        })}
       </Box>
+
       <Divider sx={{ borderColor: 'var(--mui-palette-neutral-700)' }} />
-      <Stack spacing={2} sx={{ p: '12px' }}>
+
+      {/* Footer */}
+      <Stack
+        spacing={2}
+        sx={{
+          p: 2,
+        }}
+      >
         <div>
-          <Typography color="var(--mui-palette-neutral-100)" variant="subtitle2">
+          <Typography
+            color="var(--mui-palette-neutral-100)"
+            variant="subtitle2"
+          >
             Need more features?
           </Typography>
-          <Typography color="var(--mui-palette-neutral-400)" variant="body2">
+          <Typography
+            color="var(--mui-palette-neutral-400)"
+            variant="body2"
+          >
             Check out our Pro solution template.
           </Typography>
         </div>
-        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-          <Box
-            component="img"
-            alt="Pro version"
-            src="/assets/devias-kit-pro.png"
-            sx={{ height: 'auto', width: '160px' }}
-          />
-        </Box>
+        <img
+          alt="Devias Kit Pro"
+          src="/assets/devias-kit-pro.png"
+          style={{
+            height: 'auto',
+            width: 152,
+          }}
+        />
         <Button
           component="a"
-          endIcon={<ArrowSquareUpRightIcon fontSize="var(--icon-fontSize-md)" />}
           fullWidth
-          href="https://material-kit-pro-react.devias.io/"
-          sx={{ mt: 2 }}
+          href="https://devias.io/product/material-kit-pro"
+          startIcon={
+            <ArrowSquareUpRightIcon fontSize="small" />
+          }
           target="_blank"
           variant="contained"
         >
-          Pro version
+          Pro Version
         </Button>
       </Stack>
     </Drawer>
   );
 }
 
-function renderNavItems({ items = [], pathname }: { items?: NavItemConfig[]; pathname: string }): React.JSX.Element {
-  const children = items.reduce((acc: React.ReactNode[], curr: NavItemConfig): React.ReactNode[] => {
-    const { key, ...item } = curr;
+export { MobileNav };
 
-    acc.push(<NavItem key={key} pathname={pathname} {...item} />);
-
-    return acc;
-  }, []);
-
+function renderNavItems({
+  items,
+  pathname,
+}: {
+  items: NavItemConfig[] | undefined;
+  pathname: string;
+}): React.JSX.Element {
   return (
-    <Stack component="ul" spacing={1} sx={{ listStyle: 'none', m: 0, p: 0 }}>
-      {children}
+    <Stack
+      component="ul"
+      spacing={0.5}
+      sx={{
+        listStyle: 'none',
+        margin: 0,
+        padding: 0,
+      }}
+    >
+      {items?.map((item) => {
+const active = isNavItemActive({
+  ...item,
+  pathname
+} as any);
+const { items, icon, href, title, ...other } = item;
+        const Icon = navIcons[icon as keyof typeof navIcons];
+
+        return (
+<li key={item.key || title}>
+              <Box
+                component={NextLink}
+                href={href ?? '#'}
+                sx={{
+                  alignItems: 'center',
+                  borderRadius: 1,
+                  color: active
+                    ? 'var(--mui-palette-primary-main)'
+                    : 'var(--mui-palette-neutral-300)',
+                  display: 'flex',
+                  fontWeight: active ? 600 : 500,
+                  p: 1.5,
+                  textDecoration: 'none',
+                  transition: 'background-color 0.2s',
+                  typography: 'subtitle2',
+                  '&:hover': {
+                    backgroundColor: 'var(--mui-palette-action-hover)',
+                  },
+                }}
+              >
+{Icon && (
+                <Icon 
+                  style={{
+                    fontSize: 20,
+                    marginLeft: -8,
+                    marginRight: 16,
+                  }} 
+                  color={active ? 'primary' : 'action'}
+                />
+              )}
+              <span>{title}</span>
+            </Box>
+{items && renderNavItems({
+              items: items,
+              pathname,
+            })}
+          </li>
+        );
+      })}
     </Stack>
   );
 }
 
-interface NavItemProps extends Omit<NavItemConfig, 'items'> {
-  pathname: string;
-}
-
-function NavItem({ disabled, external, href, icon, matcher, pathname, title }: NavItemProps): React.JSX.Element {
-  const active = isNavItemActive({ disabled, external, href, matcher, pathname });
-  const Icon = icon ? navIcons[icon] : null;
-
-  return (
-    <li>
-      <Box
-        {...(href
-          ? {
-              component: external ? 'a' : RouterLink,
-              href,
-              target: external ? '_blank' : undefined,
-              rel: external ? 'noreferrer' : undefined,
-            }
-          : { role: 'button' })}
-        sx={{
-          alignItems: 'center',
-          borderRadius: 1,
-          color: 'var(--NavItem-color)',
-          cursor: 'pointer',
-          display: 'flex',
-          flex: '0 0 auto',
-          gap: 1,
-          p: '6px 16px',
-          position: 'relative',
-          textDecoration: 'none',
-          whiteSpace: 'nowrap',
-          ...(disabled && {
-            bgcolor: 'var(--NavItem-disabled-background)',
-            color: 'var(--NavItem-disabled-color)',
-            cursor: 'not-allowed',
-          }),
-          ...(active && { bgcolor: 'var(--NavItem-active-background)', color: 'var(--NavItem-active-color)' }),
-        }}
-      >
-        <Box sx={{ alignItems: 'center', display: 'flex', justifyContent: 'center', flex: '0 0 auto' }}>
-          {Icon ? (
-            <Icon
-              fill={active ? 'var(--NavItem-icon-active-color)' : 'var(--NavItem-icon-color)'}
-              fontSize="var(--icon-fontSize-md)"
-              weight={active ? 'fill' : undefined}
-            />
-          ) : null}
-        </Box>
-        <Box sx={{ flex: '1 1 auto' }}>
-          <Typography
-            component="span"
-            sx={{ color: 'inherit', fontSize: '0.875rem', fontWeight: 500, lineHeight: '28px' }}
-          >
-            {title}
-          </Typography>
-        </Box>
-      </Box>
-    </li>
-  );
-}
